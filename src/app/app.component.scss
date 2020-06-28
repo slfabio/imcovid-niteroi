@@ -1,3 +1,6 @@
+a {
+    color: lightseagreen;
+}
 .nav-item{
     margin-left:10px;
 }
@@ -13,8 +16,12 @@
     font-style: italic;
 }
 .conteudo{
+    text-align: justify;
     margin: auto;
     padding: 10px;
+}
+.pagina-tit {
+    text-align: center;
 }
 .sinal-semana{
     padding: 50px;
@@ -40,13 +47,21 @@
     background-color: #9400d3;
     color: #ffffff;
 }
+.decreto {
+    text-align: justify;
+}
+.decreto-tit {
+    text-transform:uppercase; 
+    text-align: center;
+}
 .exibe-graf{
-    float: right;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0px;
 }
 a.exibe-graf{
-    color: lightseagreen;
     margin-left: 10px;
-    font-size: 12px;
 }
 .pointer{
     cursor: pointer;
@@ -62,11 +77,15 @@ a.exibe-graf{
     width: 90%;
     text-align: center;
 }
+.medida {
+    margin-bottom: 20px;
+}
 .indicador {
     height: 100%;
     justify-content: space-between;
 }
 .indicador-titulo {
+    text-align: center;
     font-size: 12px;
     font-weight: bold;
     color: #ffffff;

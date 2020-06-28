@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
   public inicio = '';
   public graficos = '';
   public dados = '';
+  public exibeDecreto = false;
 
 
   view: any[] = [150, 200];
@@ -84,6 +85,7 @@ export class AppComponent implements OnInit {
       return;
     }
     if ('graficos' === pagina) {
+      this.exibeDecreto = false;
       this.graficos = 'active';
       return;
     }
@@ -118,6 +120,10 @@ export class AppComponent implements OnInit {
 
   public exibeGraficos(idMedida: number): boolean {
     return this.medidas[idMedida].exibeGraficos;
+  }
+
+  public exibirDecreto(): void {
+    this.exibeDecreto = true;
   }
 
   public exibirGraficos(medida: Medida): void {
