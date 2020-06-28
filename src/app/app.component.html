@@ -5,7 +5,7 @@
         <a class="nav-link {{ inicio }}" href="#" (click)="acessar('inicio')">Início</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {{ graficos }}" href="#" (click)="acessar('graficos')">Indicadores</a>
+        <a class="nav-link {{ indicadores }}" href="#" (click)="acessar('indicadores')">Indicadores</a>
       </li>
       <li class="nav-item">
         <a class="nav-link {{ dados }}" href="#" (click)="acessar('dados')">Dados</a>
@@ -64,8 +64,8 @@
     </div>
   </div>
 
-  <!----------------------------------  PAGINA GRAFICOS ---------------------------------->
-  <div *ngIf="graficos" class="conteudo">
+  <!----------------------------------  PAGINA INDICADORES ---------------------------------->
+  <div *ngIf="indicadores" class="conteudo">
     <h3><div class="pagina-tit">
       <h3><span class="badge badge-pill badge-info">Indicadores</span></h3>
     </div></h3>
@@ -77,233 +77,91 @@
       target="_blank"> site da prefeitura</a>.
     <br/><br/>
     <div> 
-      <a *ngIf="exibeDecreto" href="#" (click)="acessar('graficos')">Voltar para Indicadores</a>
+      <a *ngIf="exibeDecreto" href="#" (click)="acessar('indicadores')">Voltar para Indicadores</a>
     </div>
-    <div *ngIf="exibeDecreto" class="decreto">
-    
-      <div class="decreto-tit">
-        <h3>DECRETO Nº 13.604/2020</h3><br/>
-        Capítulo II<br />Do Sistema de Monitoramento da Evolução da Epidemia de Covid-19<br />
-      </div><br /><br />
-
-      <a name="artigo_13"><span class="label label-pill label-danger">Art. 13.</span></a> 
-      O monitoramento da evolução da epidemia COVID-19 será feito com a avaliação de doze indicadores destinados a mensurar a propagação da COVID-19 e a capacidade de atendimento do sistema de saúde.<br /><br />
-      § 1º A propagação da COVID-19, com peso total 5,5 (cinco e meio), será avaliada por meio de quatro medidas, observados os seguintes pesos:<br /><br />
-      I - Velocidade do Avanço, com peso total 2,0 (dois), será mensurada por meio dos seguintes indicadores:<br /><br />
-      a) Taxa de crescimento de novos casos COVID-19: a razão entre o número de casos novos confirmados, nos últimos sete dias, 
-      dividido pelo número de casos novos confirmados nos sete dias anteriores com peso 0,5;<br />
-      b) Taxa de crescimento de Pacientes com COVID-19 internados em Leitos Clínicos: razão do número de Pacientes com COVID-19 em leitos clínicos no último dia, 
-      pelo número de Pacientes COVID-19 em leitos clínicos há sete dias atrás com peso 0,5;<br />
-      d) Taxa de Crescimento de Pacientes com COVID-19 Internados em UTI: razão do número de Pacientes com COVID-19 em leitos UTI no último dia, 
-      dividido pelo número de Pacientes com COVID-19 em leitos UTI há em sete dias atrás com peso 1.<br /><br />
-      
-      II - Estágio de Evolução, com peso total 1 (um), será mensurado por meio de indicador correspondente ao número total de casos ativos no último dia, 
-      dividido pelo número total de casos recuperados nos últimos cinquenta dias.<br /><br />
-      
-      III - Incidência de Novos Casos sobre a População, com peso total 1,25 (três), será mensurada por meio do indicador correspondente à razão entre o número de casos confirmados nos últimos sete dias, 
-      para cada cem mil habitantes;<br /><br />IV - Mortalidade por COVID-19, com peso total 1,25 (três), será mensurada por meio do indicador correspondente à razão entre o número de óbitos por COVID-19 
-      nos últimos 7 dias, para cada cem mil habitantes.<br /><br />§ 2º A capacidade de atendimento do sistema de saúde, com peso total 4,5 (quatro e meio), será avaliada por meio das medidas de mudança 
-      na capacidade de atendimento:<br /><br />I - Mudança na Capacidade de Atendimento, com peso total 2 (dois), será mensurada por meio dos seguintes indicadores:<br /><br />
-      a) a razão do número de leitos de clínicos SUS para pacientes adultos com COVID-19, para cada cem mil habitantes com peso 0,75;<br />
-      b) a razão número de leitos de UTI SUS para pacientes adultos com COVID-19, para cada cem mil habitantes com peso 1,25;<br /><br />
-      
-      II - Capacidade de Atendimento, com peso total 2,5 (dois e meio), será mensurada por meio dos seguintes indicadores:<br /><br />
-      a) taxa de Ocupação Leitos Clínicos SUS: A razão do número de pacientes-dia (adultos) internados em leitos de clínicos SUS com COVID-19, 
-      pelo número de leitos-dia clínicos (adultos) SUS para COVID-19, nos últimos sete dias com peso 0,75;<br />
-      b) taxa de Ocupação Leitos Clínicos Privados: A razão do número de pacientes-dia (adultos) internados em leitos de clínicos privados com COVID-19, 
-      pelo número de leitos-dia clínicos (adultos) privados para COVID - 19, nos últimos sete dias com peso 0,5;<br />
-      c) taxa de Ocupação Leitos UTI SUS: A razão do número de pacientes-dia (adultos) internados em leitos de UTI SUS com COVID-19, 
-      pelo número de leitos-dia clínicos (adultos) SUS para COVID19, nos últimos sete dias com peso 0,75.<br />
-      d) Taxa de Ocupação Leitos UTI Privados: A razão do número de pacientes-dia (adultos) internados em leitos de UTI privados com COVID-19, 
-      pelo número de leitos-dia de UTI (adultos) privados para COVID19, nos últimos sete dias com peso 0,5.<br /><br />
-      § 3º Consideram-se casos ativos, para os fins do disposto neste Decreto, aqueles cujos testes foram coletados dentro dos quatorze dias anteriores à data de apuração e resultaram positivo, 
-      sem ter havido, no período apurado, óbito do paciente.<br /><br />
-      § 4º Consideram-se casos recuperados os casos confirmados positivos no período dos últimos 50 dias, que já completaram 14 dias da data da coleta e não vieram a óbito, 
-      para os fins do disposto neste Decreto.<br /><br />
-      § 5º Sempre que o valor do denominador dos indicadores de que trata o inciso I e II do § 1º deste artigo for igual a zero, será somado um inteiro.<br /><br />
-      § 6º Os critérios, as medidas e os indicadores que compõem o sistema de monitoramento da evolução da epidemia de COVID-19, assim como seus pesos e bases, 
-      poderão ser modificados, excluídos, reduzidos ou ampliados, diante de evidências científicas que recomendem a sua atualização ou aperfeiçoamento.<br /><br />
-      
-      <a name="artigo_14"><span class="label label-pill label-danger">Art. 14.</span></a> O resultado da mensuração dos indicadores de que trata o art. 13 deste Decreto serão classificados, 
-      conforme o escore, em quatro sinais, correspondentes às cores Amarelo Nível 1 para situação de Alerta, Amarelo Nível 2 para situação de Alerta Máximo, Laranja para situação de Atenção Máxima, 
-      Vermelho para situação Grave e Roxo para situação Altíssimo Risco, as quais serão utilizadas para a aplicação, gradual e proporcional, de um conjunto de medidas destinadas à prevenção e ao 
-      enfrentamento da epidemia causada pelo novo Coronavírus (COVID-19), observados os seguintes critérios:<br /><br />I - os indicadores de que trata o inciso I do § 1º do art. 13 
-      serão classificados da seguinte forma:<br /><br />
-      a) Amarelo Nível 1 - Situação de Alerta, quando o score apurado for igual ou superior a 0 e inferior ou igual a 1;<br />
-      b) Amarelo Nível 2 - Situação de Alerta Máximo, quando o score apurado for superior a 1 e inferior ou igual a 1,5;<br />
-      c) Laranja - Situação Atenção Máxima, quando o score apurado for superior a 1,5 e inferior ou igual a 2,5;<br />
-      d) Vermelho - Situação Grave, quando o score apurado for superior a 2,5 e inferior ou igual a 3.<br />
-      e) Roxo Situação Altíssimo Risco, quando o score for superior a 3.<br /><br />
-
-      II - o indicador de que trata o inciso II do § 1º do art. 13 será classificado da seguinte forma:<br /><br />
-      a) Amarelo Nível 1 - Situação de Alerta, quando o escore apurado for igual ou superior a 0 e inferior ou igual a 0,25;<br />
-      b) Amarelo Nível 2 - Situação de Alerta Máximo, quando o escore apurado for superior a 0,25 e inferior ou igual a 0,5;<br />
-      c) Laranja - Situação Atenção Máxima, quando o escore apurado for superior a 0,5 e inferior ou igual a 0,75;<br />
-      d) Vermelho - Situação Grave, quando o escore apurado for superior a 0,75 e inferior ou igual a 1.<br />
-      e) Roxo - Situação Altíssimo Risco, quando o score for superior a 1.<br /><br />
-      
-      III - o indicador de que trata o inciso III do § 1º do art. 13 serão classificados da seguinte forma:<br /><br />
-      a) Amarelo Nível 1 - Situação de Alerta, quando o escore apurado for igual ou superior a 0 e inferior a 5;<br />
-      b) Amarelo Nível 2 - Situação de Alerta Máximo, quando o escore apurado for igual ou superior a 5,00 e inferior a 15;<br />
-      c) Laranja - Situação Atenção Máxima, quando o escore apurado for igual ou superior a 15 e inferior a 25;<br />
-      d) Vermelho - Situação Grave, quando o escore apurado for igual ou superior a 25 e inferior a 30.<br />
-      e) Roxo - Situação Altíssimo Risco, quando o score for igual ou superior a 30.<br /><br />
-      
-      IV - o indicador de que trata o inciso IV do § 1º do art. 13 serão classificados da seguinte forma:<br /><br />
-      a) Amarelo Nível 1 - Situação de Alerta, quando o escore apurado for igual ou superior a 0 e inferior a 2,5;<br />
-      b) Amarelo Nível 2 - Situação de Alerta Máximo, quando o escore apurado for igual ou superior a 2,5 e inferior a 5;<br />
-      c) Laranja Situação Atenção Máxima, quando o escore apurado for igual ou superior a 5 e inferior a 7,5;<br />
-      d) Vermelho Situação Grave, quando o escore apurado for igual ou superior a 7,5 e inferior a 10;<br />
-      e) Roxo Situação Altíssimo Risco, quando o score for igual ou superior a 10.<br /><br />
-      
-      V - o indicador de que trata a alínea "a" do inciso I do § 2º do art. 13 serão classificados da seguinte forma:<br /><br />
-      a) Amarelo Nível 1 - Situação de Alerta, quando o escore apurado for igual ou maior que a 25;<br />
-      b) Amarelo Nível 2 - Situação de Alerta Máximo, quando o escore apurado for menor a 25 e superior ou igual a 20;<br />
-      c) Laranja Situação Atenção Máxima, quando o escore apurado for menor a 20 e superior ou igual a 15;<br />
-      d) Vermelho - Situação Grave, quando o escore apurado for menor a 15 e superior ou igual a 10;<br />
-      e) Roxo - Situação Altíssimo Risco, quando o score for inferior a 10.<br /><br />
-      
-      VI - o indicador de que trata a alínea "b" do inciso I do § 2º do art. 13 serão classificados da seguinte forma:<br /><br />
-      a) Amarelo Nível 1 - Situação de Alerta, quando o escore apurado for igual ou maior que 20;<br />
-      b) Amarelo Nível 2 - Situação de Alerta Máximo, quando o escore apurado for menor a 20 e superior ou igual a 15;<br />
-      c) Laranja - Situação Atenção Máxima, quando o escore apurado for menor a 15 e superior ou igual a 10;<br />
-      d) Vermelho - Situação Grave, quando o escore apurado for menor que 10 e superior ou igual a 6.<br />
-      e) Roxo - Situação Altíssimo Risco, quando o score for inferior a 6.<br /><br />
-      
-      VII - o indicador de que trata a alínea "a", "b", "c", "d" do inciso II do § 2º do art. 13 serão classificados da seguinte forma:<br /><br />
-      a) Amarelo Nível 1 - Situação de Alerta, quando o escore apurado for menor que a 75%;<br />
-      b) Amarelo Nível 2 - Situação de Alerta Máximo, quando o escore apurado for igual ou superior a 75% e inferior a 80%;<br />
-      c) Laranja - Situação Atenção Máxima, quando o escore apurado for igual ou superior a 80% e inferior a 85%;<br />
-      d) Vermelho - Situação Grave, quando o escore apurado for maior que 85% e inferior ou igual a 90%;<br />
-      e) Roxo - Situação Altíssimo Risco, quando o score for superior a 90%<br /><br />
-      
-      Parágrafo único. Serão considerados, para o cálculo da média ponderada das bandeiras dos indicadores, os seguintes fatores:<br /><br />
-      I - Sinal Amarelo Nível 1 - Situação de Alerta equivale a zero;<br /><br />
-      II - Sinal Amarelo Nível 2 - Situação de Alerta Máximo equivale a um;<br /><br />
-      III - Sinal Laranja - Situação Atenção Máxima equivale a um e meio;<br /><br />
-      IV - Sinal Vermelho - Situação Grave equivale a 2;<br /><br />
-      V - Sinal Roxo - Situação Altíssimo Risco equivale a 3.<br /><br />
-
-      <a name="artigo_15"><span class="label label-pill label-danger">Art. 15.</span></a> 
-      O Município será classificado, semanalmente, em um Sinal, a qual será definido a partir do indicador síntese que é a média ponderada dos sinais dos indicadores, respeitados os respectivos pesos, 
-      da seguinte forma:<br /><br />
-      
-      I - Sinal Amarelo Nível 1 - Situação de Alerta, quando o somatório das médias ponderadas for inferior ou igual a 5;<br /><br />
-      II - Sinal Amarelo Nível 2 - Situação de Alerta Máximo, quando o somatório das médias ponderadas for superior a 5 inferior ou igual a 10;<br /><br />
-      III - Sinal Laranja - Situação Atenção Máxima, quando o somatório das médias ponderadas for superior a 10 e inferior ou igual a 15;<br /><br />
-      IV - Sinal Vermelho - Situação Grave, quando o somatório das médias ponderadas for superior a 15 e menor ou igual a 20;<br /><br />
-      V - Sinal Roxo - Situação Altíssimo Risco, quando o somatório das médias ponderadas for superior a 20;<br /><br />
-
-      <a name="artigo_16"><span class="label label-pill label-danger">Art. 16.</span></a> A divulgação dos resultados da mensuração dos indicadores ocorrerá semanalmente, sempre aos sábados, 
-      e o Sinal em que o município for classificado vigorará da zero hora da segunda-feira imediatamente posterior até as vinte e quatro horas do domingo seguinte.<br /><br />
-      Parágrafo único. De acordo com o resultado semanal citado no caput, serão permitidas o funcionamento das atividades constantes do anexo I, de acordo com as limitações nele contidas.<br /><br />
-      <a name="artigo_17"><span class="label label-pill label-danger">Art. 17.</span></a> Para efeitos de contagem dos indicadores do presente Decreto serão utilizadas as definições constantes no Manual de 
-      Padronização da Nomenclatura do censo Hospitalar do Ministério da Saúde, de 2002, conforme anexo II.<br /><br />
-      <a name="artigo_18"><span class="label label-pill label-danger">Art. 18.</span></a> 
-      Fica criado o índice de risco setorial, metodologia que irá analisar cada setor econômico do município sob dois aspectos: 
-      risco de contágio do setor e relevância econômica, conforme Anexo I.<br /><br />
-      Parágrafo único. O índice de risco setorial será indicativo e irá auxiliar o gestor público a identificar quais setores estão mais aptos a abrir primeiro em um contexto de flexibilização controlada.<br /><br />
-      
-      <a name="artigo_19"><span class="label label-pill label-danger">Art. 19.</span></a> Fica criado o Comitê Técnico Científico Consultivo com a finalidade prestar apoio às atividades do Gabinete de Crise para 
-      o enfrentamento à epidemia de COVID-19 com especial atenção aos elementos estratégicos e científicos para suporte à tomada de decisões da gestão para o Plano de Transição Gradual para o Novo Normal.<br /><br />
-      
-      <a name="artigo_20"><span class="label label-pill label-danger">Art. 20.</span></a> A Coordenação do Comitê Técnico Científico Consultivo poderá:<br /><br />
-      I - convidar para participação de reuniões e de quaisquer outras ações do Comitê outros especialistas e representantes de entidades não relacionados na composição deste presente Capítulo, 
-      no intuito de contribuir e agregar conhecimento;<br /><br />
-      II - formar grupos de trabalho para tratar de assuntos específicos e para apoiar suas ações.<br /><br />
-      § 1º O Comitê Técnico Científico Consultivo do Plano de Transição Gradual para o Novo Normal de que trata o "caput" é composto por:<br /><br />
-      I - Prof. Dr. Antônio Claudio Lucas da Nóbrega - Universidade Federal Fluminense;<br /><br />
-      II - Prof. Dr. Aluísio Gomes da Silva Junior - Universidade Federal Fluminense;<br /><br />
-      III - Prof. Dr. Roberto Medronho - Universidade Federal do Rio de Janeiro;<br /><br />
-      IV - Prof. Dr. Rômulo Paes de Sousa - Fundação Oswaldo Cruz;<br /><br />
-      § 2º A Coordenação do Comitê Científico será do Prof. Dr. Antônio Cláudio Lucas da Nobrega, Magnífico Reitor da Universidade Federal Fluminense.<br /><br />
-      
-      <a name="artigo_21"><span class="label label-pill label-danger">Art. 21.</span></a> A participação como integrante do Comitê Técnico Científico será considerada função pública relevante e não remunerada.<br /><br />
-
-      <a name="artigo_22"><span class="label label-pill label-danger">Art. 22.</span></a> Este Decreto entra em vigor na data de sua publicação, revogadas as disposições em contrário.<br /><br />
-  </div>
-  <div *ngIf="!exibeDecreto">
-    <div class="exibe-graf"> 
-      <span><i>No celular melhor visulizado na horizontal</i></span>
-      <span>
-        <a href="#" (click)="expandir(true)">+ Expandir</a>
-        &nbsp;
-        <a href="#" (click)="expandir(false)">- Diminuir</a>
-      </span>
-    </div>
-    <div *ngFor="let medida of medidas" class="card medida">
-      <div class="card-header card-titulo pointer" (click)="exibirGraficos(medida)">
-        <span>{{ medida.nome }}</span>
-        <table class="tb-classificacao">
-          <tr>
-            <td *ngFor="let classe of medida.classes" class="{{ classe.id }}">{{ classe.nome }}: {{ classe.valores }}</td>
-          </tr>
-        </table>
+    <decreto [exibeDecreto]="exibeDecreto"></decreto>
+    <div *ngIf="!exibeDecreto">
+      <div class="exibe-graf"> 
+        <span><i>No celular melhor visulizado na horizontal</i></span>
+        <span>
+          <a href="#" (click)="expandir(true)">+ Expandir</a>
+          &nbsp;
+          <a href="#" (click)="expandir(false)">- Diminuir</a>
+        </span>
       </div>
-      <div *ngIf="exibeGraficos(medida.id)">
-        <div class="row" *ngFor="let indicador of medida.indicadores">
-          <div class="col">
-            <div class="card indicador">
-              <span class="indicador-titulo bg-info"> {{ indicador.nome }} </span>
-              <ngx-charts-bar-vertical *ngIf="!medida.graficoPercentual" class="card-img-top"
-                [view]="view"
-                [scheme]="colorScheme"
-                [customColors]="indicador.corSinal"
-                [results]="indicador.graficoIndice"
-                [gradient]="gradient"
-                [xAxis]="showXAxis"
-                [yAxis]="showYAxis"
-                [legend]="showLegend"
-                [showXAxisLabel]="showXAxisLabel"
-                [showYAxisLabel]="showYAxisLabel"
-                [xAxisLabel]="xAxisLabel"
-                [yAxisLabel]="yAxisLabel"
-                (select)="onSelect($event)">
-              </ngx-charts-bar-vertical>
-              <ngx-charts-bar-vertical-normalized *ngIf="medida.graficoPercentual" class="card-img-top"
-                [view]="view"
-                [scheme]="colorScheme"
-                [customColors]="indicador.corSinal"
-                [results]="indicador.graficoIndice"
-                [gradient]="gradient"
-                [xAxis]="showXAxis"
-                [yAxis]="showYAxis"
-                [legend]="showLegend"
-                [showXAxisLabel]="showXAxisLabel"
-                [showYAxisLabel]="showYAxisLabel"
-                [xAxisLabel]="xAxisLabel"
-                [yAxisLabel]="yAxisLabel"
-                (select)="onSelect($event)">
-              </ngx-charts-bar-vertical-normalized>
+      <div *ngFor="let medida of medidas" class="card medida">
+        <div class="card-header card-titulo pointer" (click)="exibirGraficos(medida)">
+          <span>{{ medida.nome }}</span>
+          <table class="tb-classificacao">
+            <tr>
+              <td *ngFor="let classe of medida.classes" class="{{ classe.id }}">{{ classe.nome }}: {{ classe.valores }}</td>
+            </tr>
+          </table>
+        </div>
+        <div *ngIf="exibeGraficos(medida.id)">
+          <div class="row" *ngFor="let indicador of medida.indicadores">
+            <div class="col">
+              <div class="card indicador">
+                <span class="indicador-titulo bg-info"> {{ indicador.nome }} </span>
+                <ngx-charts-bar-vertical *ngIf="!medida.graficoPercentual" class="card-img-top"
+                  [view]="view"
+                  [scheme]="colorScheme"
+                  [customColors]="indicador.corSinal"
+                  [results]="indicador.graficoIndice"
+                  [gradient]="gradient"
+                  [xAxis]="showXAxis"
+                  [yAxis]="showYAxis"
+                  [legend]="showLegend"
+                  [showXAxisLabel]="showXAxisLabel"
+                  [showYAxisLabel]="showYAxisLabel"
+                  [xAxisLabel]="xAxisLabel"
+                  [yAxisLabel]="yAxisLabel"
+                  (select)="onSelect($event)">
+                </ngx-charts-bar-vertical>
+                <ngx-charts-bar-vertical-normalized *ngIf="medida.graficoPercentual" class="card-img-top"
+                  [view]="view"
+                  [scheme]="colorScheme"
+                  [customColors]="indicador.corSinal"
+                  [results]="indicador.graficoIndice"
+                  [gradient]="gradient"
+                  [xAxis]="showXAxis"
+                  [yAxis]="showYAxis"
+                  [legend]="showLegend"
+                  [showXAxisLabel]="showXAxisLabel"
+                  [showYAxisLabel]="showYAxisLabel"
+                  [xAxisLabel]="xAxisLabel"
+                  [yAxisLabel]="yAxisLabel"
+                  (select)="onSelect($event)">
+                </ngx-charts-bar-vertical-normalized>
+              </div>
             </div>
-          </div>
-          <div class="col">
-            <div class="card indicador">
-              <span class="indicador-titulo bg-info"> {{ indicador.numerador.nome }} </span>
-              <ngx-charts-bar-vertical class="card-img-top"
-                [view]="view"
-                [scheme]="colorScheme"
-                [customColors]="indicador.corSinal"
-                [results]="indicador.graficoNumerador"
-                [gradient]="gradient"
-                [xAxis]="showXAxis"
-                [yAxis]="showYAxis"
-                [legend]="showLegend"
-                [showXAxisLabel]="showXAxisLabel"
-                [showYAxisLabel]="showYAxisLabel"
-                [xAxisLabel]="xAxisLabel"
-                [yAxisLabel]="yAxisLabel"
-                (select)="onSelect($event)">
-              </ngx-charts-bar-vertical>
-            </div>
-          </div> 
-        </div> <!--indicador-->
-      </div> <!--exibe grafico-->
-    </div> <!--Medida-->
-  </div>
-  </div> <!-- grafico -->
+            <div class="col">
+              <div class="card indicador">
+                <span class="indicador-titulo bg-info"> {{ indicador.numerador.nome }} </span>
+                <ngx-charts-bar-vertical class="card-img-top"
+                  [view]="view"
+                  [scheme]="colorScheme"
+                  [customColors]="indicador.corSinal"
+                  [results]="indicador.graficoNumerador"
+                  [gradient]="gradient"
+                  [xAxis]="showXAxis"
+                  [yAxis]="showYAxis"
+                  [legend]="showLegend"
+                  [showXAxisLabel]="showXAxisLabel"
+                  [showYAxisLabel]="showYAxisLabel"
+                  [xAxisLabel]="xAxisLabel"
+                  [yAxisLabel]="yAxisLabel"
+                  (select)="onSelect($event)">
+                </ngx-charts-bar-vertical>
+              </div>
+            </div> 
+          </div> <!--indicador-->
+        </div> <!--exibe grafico-->
+      </div> <!--Medida-->
+    </div> <!-- graficos-->
+  </div> <!-- indicadores -->
 
-  <!----------------------------------  PAGINA GRAFICOS ---------------------------------->
+  <!----------------------------------  PAGINA DADOS ---------------------------------->
   <div *ngIf="dados" class="conteudo">
     <div class="pagina-tit">
       <h3><span class="badge badge-pill badge-info">Dados</span></h3>

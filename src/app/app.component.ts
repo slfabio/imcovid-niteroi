@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
   public fonteDados = [];
 
   public inicio = '';
-  public graficos = '';
+  public indicadores = '';
   public dados = '';
   public exibeDecreto = false;
 
@@ -78,15 +78,15 @@ export class AppComponent implements OnInit {
 
   public acessar(pagina: string): void {
     this.inicio = '';
-    this.graficos = '';
+    this.indicadores = '';
     this.dados = '';
     if ('inicio' === pagina) {
       this.inicio = 'active';
       return;
     }
-    if ('graficos' === pagina) {
+    if ('indicadores' === pagina) {
       this.exibeDecreto = false;
-      this.graficos = 'active';
+      this.indicadores = 'active';
       return;
     }
     if ('dados' === pagina) {
