@@ -23,6 +23,10 @@
       divulgados pela <a target="_blank" href="http://www.saude.niteroi.rj.gov.br/" >Fundação Municipal de Saúde de Niterói</a>, 
       com o objetivo de dar maior transparência na evolução desses indicadores.
     </div>
+    <div class="row">
+      <div class="col col-grafico-invisivel"></div>
+      <div #divTamanhoGraficoSinal class="col col-grafico-invisivel"></div>
+    </div>
     <div class="card card-sem-borda">
       <div class="card-header card-titulo">
         <span>
@@ -42,11 +46,11 @@
               De {{estagio.semana}}
             </div>
           </div>
-          <div class="col">
+          <div #colGraficoEstagio class="col">
             <div class="card indicador">
               <span class="indicador-titulo bg-info"> Estágio da Semana </span>
               <ngx-charts-bar-vertical class="card-img-top"
-                [view]="view"
+                [view]="[divTamanhoGraficoSinal.offsetWidth / 2, 200]"
                 [scheme]="colorScheme"
                 [results]="estagio.graficoIndice"
                 [customColors]="estagio.corSinal"
@@ -65,18 +69,20 @@
     <h3><div class="pagina-tit">
       <h3><span class="badge badge-pill badge-info">Indicadores</span></h3>
     </div></h3>
-    O Decreto Municipal 13.604/2020 instituiu o Plano de Transição Gradual para o Novo Normal - Distanciamento Responsável para fins de prevenção e de enfrentamento à epidemia 
-    causada pelo novo Coronavírus (COVID-19) no âmbito do Município de Niterói.<br/>
-    O <a href="#" (click)="exibirDecreto()">Capítulo II</a>, que define os 12 indicadores de monitoramento, está disponível em nossa página.
-    O decreto na íntegra está no 
-    <a href="http://www.pgm.niteroi.rj.gov.br/legislacao_pmn/2020/Decretos/DECRETO%20N%C2%BA13.604%20Institui%20o%20Plano%20de%20Transi%C3%A7%C3%A3o%20Gradual%20para%20o%20Novo%20Normal.pdf" 
-      target="_blank"> site da prefeitura</a>.
+    O <a href="http://www.pgm.niteroi.rj.gov.br/legislacao_pmn/2020/Decretos/DECRETO%20N%C2%BA13.604%20Institui%20o%20Plano%20de%20Transi%C3%A7%C3%A3o%20Gradual%20para%20o%20Novo%20Normal.pdf" 
+    target="_blank"> Decreto Municipal 13.604/2020</a> instituiu o Plano de Transição Gradual para o Novo Normal - Distanciamento Responsável para fins de prevenção e de enfrentamento à epidemia 
+    causada pelo novo Coronavírus (COVID-19) no âmbito do Município de Niterói. Nos gráficos abaixo disponbilizamos a evolução de cada um dos 12 indicadores de monitoramento da COVID-19,
+    criados no decreto e divulgados semanalmente pela prefeitura.
     <br/><br/>
     <div> 
       <a *ngIf="exibeDecreto" href="#" (click)="acessar('indicadores')">Voltar para Indicadores</a>
     </div>
     <decreto [exibeDecreto]="exibeDecreto"></decreto>
     <div *ngIf="!exibeDecreto">
+      <div class="row">
+        <div class="col col-grafico-invisivel"></div>
+        <div #divTamanhoGrafico class="col col-grafico-invisivel"></div>
+      </div>
       <div class="exibe-graf"> 
         <span><i>No celular melhor visulizado na horizontal</i></span>
         <span>
@@ -95,60 +101,39 @@
           </table>
         </div>
         <div *ngIf="exibeGraficos(medida.id)">
-          <div class="row" *ngFor="let indicador of medida.indicadores">
-            <div class="col">
+          <div class="row" *ngFor="let indicador of medida.indicadores; let i = index">
+            <div [attr.id]="col + i" class="col">
               <div class="card indicador">
                 <span class="indicador-titulo bg-info"> {{ indicador.nome }} </span>
                 <ngx-charts-bar-vertical *ngIf="!medida.graficoPercentual" class="card-img-top"
-                  [view]="view"
+                  [view]="[divTamanhoGrafico.offsetWidth / 2, 200]"
                   [scheme]="colorScheme"
                   [customColors]="indicador.corSinal"
                   [results]="indicador.graficoIndice"
-                  [gradient]="gradient"
                   [xAxis]="showXAxis"
-                  [yAxis]="showYAxis"
-                  [legend]="showLegend"
-                  [showXAxisLabel]="showXAxisLabel"
-                  [showYAxisLabel]="showYAxisLabel"
-                  [xAxisLabel]="xAxisLabel"
-                  [yAxisLabel]="yAxisLabel"
-                  (select)="onSelect($event)">
+                  [yAxis]="showYAxis">
                 </ngx-charts-bar-vertical>
                 <ngx-charts-bar-vertical-normalized *ngIf="medida.graficoPercentual" class="card-img-top"
-                  [view]="view"
+                  [view]="[divTamanhoGrafico.offsetWidth / 2, 200]"
                   [scheme]="colorScheme"
                   [customColors]="indicador.corSinal"
                   [results]="indicador.graficoIndice"
-                  [gradient]="gradient"
                   [xAxis]="showXAxis"
-                  [yAxis]="showYAxis"
-                  [legend]="showLegend"
-                  [showXAxisLabel]="showXAxisLabel"
-                  [showYAxisLabel]="showYAxisLabel"
-                  [xAxisLabel]="xAxisLabel"
-                  [yAxisLabel]="yAxisLabel"
-                  (select)="onSelect($event)">
+                  [yAxis]="showYAxis">
                 </ngx-charts-bar-vertical-normalized>
               </div>
             </div>
             <div class="col">
               <div class="card indicador">
-                <span class="indicador-titulo bg-info"> {{ indicador.numerador.nome }} </span>
-                <ngx-charts-bar-vertical class="card-img-top"
-                  [view]="view"
+                <span class="indicador-titulo bg-info"> {{ indicador.numerador.nome }} / {{ indicador.denominador.nome }} </span>
+                <ngx-charts-bar-vertical-2d class="card-img-top"
+                  [view]="[divTamanhoGrafico.offsetWidth - 10, 200]"  
                   [scheme]="colorScheme"
                   [customColors]="indicador.corSinal"
                   [results]="indicador.graficoNumerador"
-                  [gradient]="gradient"
                   [xAxis]="showXAxis"
-                  [yAxis]="showYAxis"
-                  [legend]="showLegend"
-                  [showXAxisLabel]="showXAxisLabel"
-                  [showYAxisLabel]="showYAxisLabel"
-                  [xAxisLabel]="xAxisLabel"
-                  [yAxisLabel]="yAxisLabel"
-                  (select)="onSelect($event)">
-                </ngx-charts-bar-vertical>
+                  [yAxis]="showYAxis">
+                </ngx-charts-bar-vertical-2d>
               </div>
             </div> 
           </div> <!--indicador-->

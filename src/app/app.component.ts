@@ -23,18 +23,19 @@ export class AppComponent implements OnInit {
   @ViewChild('inicio') divInicio: ElementRef; 
   @ViewChild('indicadores') divIndicadores: ElementRef; 
   @ViewChild('dados') divDados: ElementRef; 
+  @ViewChild('colGraficoEstagio') divColGraficoEstagio: ElementRef;
 
   public exibeDecreto = false;
   public divAtivo = AppComponent.INICIO;
 
-
-  view: any[] = [150, 200];
   showXAxis = true;
   showYAxis = true;
-  gradient = false;
-  showLegend = false;
   timeline = true;
-  colorScheme = {domain: ['#8cf06e']};
+  colorScheme = {domain: ['#BE81F7', '#8cf06e']};
+
+  public obterDimensoesGrafico(): any[] {
+    return [this.divColGraficoEstagio.nativeElement.offsetWidth, 200];
+  }
 
   private inicializarMedida(medida: Medida, id: number) {
     medida.id = id;
@@ -58,8 +59,22 @@ export class AppComponent implements OnInit {
         const corSinal = [];
         indicador.serie.forEach(s => {
           const label = s.dia.substring(0, 5);
-          graficoNumerador.push({name: label, value: s.numerador});
           graficoIndice.push({name: label, value: s.indice});
+          graficoNumerador.push(
+            {
+              name: s.dia.substring(0, 5),
+              series: [
+                {
+                  name: indicador.numerador.nome,
+                  value: s.numerador
+                },
+                {
+                  name: indicador.denominador.nome,
+                  value: s.denominador
+                }
+              ]
+            });
+            //{name: label, value: s.numerador});
           corSinal.push({name: label, value: this.obterCorSinal(s.sinal)});
         });
         this.inicializarIndicador(indicador, graficoNumerador, graficoIndice, corSinal);
