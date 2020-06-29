@@ -1,24 +1,20 @@
 <div class="container" style="text-align:center">
-  <nav class="navbar navbar-dark bg-info">
+  <nav class="navbar navbar-dark cab-fixo bg-info">
     <ul class="navbar-nav bd-navbar-nav flex-row">
       <li class="nav-item">
-        <a class="nav-link {{ inicio }}" href="#" (click)="acessar('inicio')">Início</a>
+        <button class="nav-link" [ngClass]="{'active': divAtivo === 1 }" (click)="acessar(inicio)">Início</button>
       </li>
       <li class="nav-item">
-        <a class="nav-link {{ indicadores }}" href="#" (click)="acessar('indicadores')">Indicadores</a>
+        <button class="nav-link" (click)="acessar(indicadores)" [ngClass]="{'active': divAtivo === 2 }">Indicadores</button>
       </li>
       <li class="nav-item">
-        <a class="nav-link {{ dados }}" href="#" (click)="acessar('dados')">Dados</a>
+        <button class="nav-link {{ dados }}" (click)="acessar(dados)" [ngClass]="{'active': divAtivo === 3 }">Dados</button>
       </li>
     </ul>  
-    <b class="bg-info" style="color:#ffffff;">{{ title }}</b>
+    <span style="font-size: 10px; color:#ffffff;">Atualizado em {{ dtAtualizacao }}</span> 
   </nav>
-  <div class="atualizacao">
-    <span>Atualizado em {{ dtAtualizacao }}</span> 
-    <span>Contato: niteroi.monitoramento@gmail.com</span>
-  </div>
   <!----------------------------------  PAGINA INICIO ---------------------------------->
-  <div *ngIf="inicio" class="conteudo">
+  <div #inicio id="inicio" class="conteudo">
     <div class="pagina-tit">
       <h3><span class="badge badge-pill badge-info">Sinal da Semana</span></h3>
     </div>
@@ -27,7 +23,7 @@
       divulgados pela <a target="_blank" href="http://www.saude.niteroi.rj.gov.br/" >Fundação Municipal de Saúde de Niterói</a>, 
       com o objetivo de dar maior transparência na evolução desses indicadores.
     </div>
-    <div class="card">
+    <div class="card card-sem-borda">
       <div class="card-header card-titulo">
         <span>
           <div>Estágio da Semana: {{ estagio.indice }}</div>
@@ -65,7 +61,7 @@
   </div>
 
   <!----------------------------------  PAGINA INDICADORES ---------------------------------->
-  <div *ngIf="indicadores" class="conteudo">
+  <div #indicadores id="indicadores" class="conteudo" in-viewport (inViewportAction)="action($event)">
     <h3><div class="pagina-tit">
       <h3><span class="badge badge-pill badge-info">Indicadores</span></h3>
     </div></h3>
@@ -89,7 +85,7 @@
           <a href="#" (click)="expandir(false)">- Diminuir</a>
         </span>
       </div>
-      <div *ngFor="let medida of medidas" class="card medida">
+      <div *ngFor="let medida of medidas" class="card card-sem-borda medida">
         <div class="card-header card-titulo pointer" (click)="exibirGraficos(medida)">
           <span>{{ medida.nome }}</span>
           <table class="tb-classificacao">
@@ -162,7 +158,7 @@
   </div> <!-- indicadores -->
 
   <!----------------------------------  PAGINA DADOS ---------------------------------->
-  <div *ngIf="dados" class="conteudo">
+  <div #dados id="dados" class="conteudo" in-viewport (inViewportAction)="action($event)">
     <div class="pagina-tit">
       <h3><span class="badge badge-pill badge-info">Dados</span></h3>
     </div>
@@ -180,5 +176,16 @@
     <br/>
     <i><u>*Atualizamos os dados toda segunda-feira, logo após a divulgação dos dados oficiais no site da Fundação Municipal de Saúde.</u></i>
   </div>
+  <footer class="rodape">
+    Contato<br>
+    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-envelope-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/>
+    </svg>
+    niteroi.monitoramento@gmail.com <br><br>
+    Portais Oficiais<br>
+    <a target="_blank" href="http://www.saude.niteroi.rj.gov.br">http://www.saude.niteroi.rj.gov.br</a> <br>
+    <a target="_blank" href="https://coronavirus.rj.gov.br">https://coronavirus.rj.gov.br</a> <br>
+    <a target="_blank" href="https://covid.saude.gov.br">https://covid.saude.gov.br</a> 
+  </footer>
 </div> <!-- container-->
 <router-outlet></router-outlet>

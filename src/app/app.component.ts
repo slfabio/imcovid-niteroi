@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild, ElementRef } from '@angular/core';
 import bd from '../assets/dados/dados.json';
-import { Medida } from './medida';
-import { Indicador } from './indicador';
-import { Estagio } from './estagio';
+import { Medida } from './modelos/medida';
+import { Indicador } from './modelos/indicador';
+import { Estagio } from './modelos/estagio';
 
 @Component({
   selector: 'app-root',
@@ -10,16 +10,22 @@ import { Estagio } from './estagio';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  public static readonly INICIO = 1;
+  public static readonly INDICADORES = 2;
+  public static readonly DADOS = 3;
+
   title = 'Indicadores de Monitoramento da COVID-19 em Niterói';
   public medidas: Medida[];
   public estagio: Estagio;
   public dtAtualizacao: string;
   public fonteDados = [];
 
-  public inicio = '';
-  public indicadores = '';
-  public dados = '';
+  @ViewChild('inicio') divInicio: ElementRef; 
+  @ViewChild('indicadores') divIndicadores: ElementRef; 
+  @ViewChild('dados') divDados: ElementRef; 
+
   public exibeDecreto = false;
+  public divAtivo = AppComponent.INICIO;
 
 
   view: any[] = [150, 200];
@@ -73,26 +79,31 @@ export class AppComponent implements OnInit {
     });
 
     this.definirGraficoOcupacaoLeitos(this.medidas[this.medidas.length - 1]);
-    this.acessar('inicio');
   }
 
-  public acessar(pagina: string): void {
-    this.inicio = '';
-    this.indicadores = '';
-    this.dados = '';
-    if ('inicio' === pagina) {
-      this.inicio = 'active';
-      return;
+  public cont = 0;
+  public cont1 = 0;
+
+  @HostListener('window:scroll', ['$event']) // for window scroll events
+  onScroll(event) {
+    const topInicio = Math.trunc(Math.abs(this.divInicio.nativeElement.getBoundingClientRect().top));
+    const topIndicadores = Math.trunc(Math.abs(this.divIndicadores.nativeElement.getBoundingClientRect().top));
+    const topDados = Math.trunc(Math.abs(this.divDados.nativeElement.getBoundingClientRect().top));
+    if (topInicio < 50 || topIndicadores < 50 || topDados < 50) {
+      if (topIndicadores < 50) {
+        this.divAtivo = AppComponent.INDICADORES;
+        return;
+      }
+      if (topDados < 50) {
+        this.divAtivo = AppComponent.DADOS;
+        return;
+      }
+      this.divAtivo = AppComponent.INICIO;
     }
-    if ('indicadores' === pagina) {
-      this.exibeDecreto = false;
-      this.indicadores = 'active';
-      return;
-    }
-    if ('dados' === pagina) {
-      this.dados = 'active';
-      return;
-    }
+  }
+
+  public acessar(pagina: Element): void {
+    pagina.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
   }
 
   private obterCorSinal(sinal: string): string {

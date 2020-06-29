@@ -1,6 +1,16 @@
 a {
     color: lightseagreen;
 }
+.cab-fixo {
+    position: sticky;
+    top: 0;
+}
+.nav-link {
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  outline:none;
+}
 .nav-item{
     margin-left:10px;
 }
@@ -16,14 +26,16 @@ a {
     font-style: italic;
 }
 .conteudo{
+    width: 100%;
     text-align: justify;
-    margin: auto;
-    padding: 10px;
+    margin-top: 20px;
+    
 }
 .pagina-tit {
     text-align: center;
 }
 .sinal-semana{
+    text-align: center;
     padding: 50px;
     height: 100%;
 }
@@ -61,6 +73,18 @@ a.exibe-graf{
 }
 .desc{
     font-size: 10px;
+}
+.row {
+    margin-bottom: 10px;
+}
+.col {
+    position: static;
+}
+.card {
+    position: static;
+}
+.card-sem-borda{
+    border: 0px;
 }
 .card-titulo {
     float: left;
@@ -123,4 +147,11 @@ a.exibe-graf{
     margin: 5px;
     width: 20%;
     color: #ffffff;
+}
+.rodape {
+    margin-top: 50px;
+    padding: 15px 0 15px 0;
+    text-align: center;
+    background-color: lightgrey;
+    color: darkslategrey;
 }
